@@ -73,7 +73,7 @@ export class ProcessService {
    * Deleta um processo (ADMIN)
    */
   async delete(id: number): Promise<void> {
-    return this.apiClient.delete<void>(`/process/${id}`, { isAuthorized: true });
+    return this.apiClient.delete<void>(`/process/${id}`, undefined, { isAuthorized: true });
   }
 
   /**
