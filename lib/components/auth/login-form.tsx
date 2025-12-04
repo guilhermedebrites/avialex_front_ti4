@@ -8,6 +8,7 @@ import { Input } from "@/lib/components/ui/input"
 import { Label } from "@/lib/components/ui/label"
 import { Separator } from "@/lib/components/ui/separator"
 import { Eye, EyeOff, Mail, Lock } from "lucide-react"
+import { Chrome } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/lib/contexts"
@@ -53,6 +54,11 @@ export function LoginForm() {
       ...prev,
       [e.target.name]: e.target.value,
     }))
+  }
+
+  const handleGoogleSignIn = () => {
+    const apiBaseURL = process.env.NEXT_PUBLIC_API_URL || "https://avialex-ti4.onrender.com"
+    window.location.href = `${apiBaseURL}/auth/oauth2/google`
   }
 
   return (
@@ -125,6 +131,17 @@ export function LoginForm() {
       </Button>
 
       <Separator />
+
+      <Button
+        type="button"
+        variant="outline"
+        className="w-full"
+        onClick={handleGoogleSignIn}
+        disabled={isLoading}
+      >
+        <Chrome className="mr-2 h-4 w-4" />
+        Entrar com Google
+      </Button>
 
       <div className="text-center text-sm text-muted-foreground">
         Não tem uma conta?{" "}
